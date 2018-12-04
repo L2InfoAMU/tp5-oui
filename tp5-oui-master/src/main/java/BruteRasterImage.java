@@ -46,8 +46,12 @@ public class BruteRasterImage implements Image {
     }
     protected void setWidth(int width){
         this.Width=width;
+        this.Colors.length = width;
     }
     protected void setHeight(int height){
         this.Height=height;
+        for(int i=0;i<width;i++) {
+        	this.Colors[i].length = height;
+        }
     }
 }  

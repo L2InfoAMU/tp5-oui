@@ -1,3 +1,4 @@
+import image.Image;
 
 public class PaletteRasterImage implements image{
 	List<Color> palette;
@@ -57,16 +58,42 @@ public class PaletteRasterImage implements image{
 		return palette.get(this.indexesOfColors[x][y]);
 	}
 	/*met à jour les valeurs de couleurs de l’image en utilisant les valeurs de la matrice donnée en paramètre.*/
-	public void setPixelsColor(Color[][] pixels){}
+	public void setPixelsColor(Color[][] pixels){
+		for(int i = 0;i<width;i++){
+            for(int j=0;i<height;j++){
+            	setPixelColor(pixels[i][j],i,j);
+            }
+		}
+	}
 	/*change les valeurs de tous les pixels pour qu’ils soient tous de la couleur donnée en paramètre.*/
-	private void setPixelsColor(Color color){}
+	private void setPixelsColor(Color color){
+		if(palette.contains(color)==false) {
+			palette.add(0,color);
+		}
+		for(int i = 0;i<width;i++){
+            for(int j=0;i<height;j++){
+            	this.indexesOfColors[i][j]=0;
+            }
+		}
+	}
 	/*retourne la largeur de l’image.*/
-	public int getWidth(){}
+	public int getWidth(){
+		return this.width;
+	}
 	/* retourne la hauteur de l’image.*/
-	public int getHeight(){}
+	public int getHeight(){
+		return this.height;
+	}
 	/*fixe la largeur de l’image.*/
-	protected void setWidth(int width){}
+	protected void setWidth(int width){
+		this.width=width;
+		this.indexesOfColors.length=width;
+	}
 	/*fixe la hauteur de l’image.*/
-	protected void setHeight(int height){}
-	
+	protected void setHeight(int height){
+		this.height=height;
+		for(int i=0;i<width;i++) {
+        	this.indexesOfColors[i].length = height;
+        }
+	}
 }

@@ -1,3 +1,4 @@
 public enum RasterImageType {
-BRUT;
+BRUT,
+PALETTE;
 }
